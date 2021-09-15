@@ -6,7 +6,10 @@ For 1.2.2 release and previous ones, this is a copy/paste from FredericRP's Stan
 
 ## Unreleased
 
+## [1.3.0] - 2021-09-15
+
 ### Changed
+- Use its own repository
 - Do not use GUIDs for assembly references to make it clearer if an assembly is not found
 - Added virtual to GameEvent methods to allow override
 
