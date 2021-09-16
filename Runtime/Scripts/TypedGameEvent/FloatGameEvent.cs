@@ -14,5 +14,11 @@ namespace FredericRP.EventManagement
       else
         eventHandler.TriggerInstanceEvent<float>(this, parameter);
     }
+
+    public void Raise(float parameter, GameEventHandler eventHandler = null)
+    {
+      this.parameter = parameter;
+      Raise(eventHandler);
+    }
   }
 }

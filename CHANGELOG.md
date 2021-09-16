@@ -6,6 +6,10 @@ For 1.2.2 release and previous ones, this is a copy/paste from FredericRP's Stan
 
 ## Unreleased
 
+### Changed
+- FloatGameEvent has now its own Raise method with a float parameter
+- SimpleEventTrigger use the new way of calling event Raise method instead of GameEventHandler methods
+
 ## [1.3.0] - 2021-09-15
 
 ### Changed

@@ -11,11 +11,11 @@ public class SimpleEventTrigger : MonoBehaviour
 
   private void OnEnable()
   {
-    GameEventHandler.AddEventListener(gameEvent, unityEvent.Invoke);
+    gameEvent?.Listen(unityEvent.Invoke);
   }
 
   private void OnDisable()
   {
-    GameEventHandler.RemoveEventListener(gameEvent, unityEvent.Invoke);
+    gameEvent?.Delete(unityEvent.Invoke);
   }
 }
