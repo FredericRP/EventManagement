@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace FredericRP.EventManagement
 {
@@ -15,6 +13,11 @@ namespace FredericRP.EventManagement
         GameEventHandler.TriggerEvent<int>(this, parameter);
       else
         eventHandler.TriggerInstanceEvent<int>(this, parameter);
+    }
+
+    public void Raise(int parameter, GameEventHandler eventHandler = null)
+    {
+      base.Raise<int>(parameter, eventHandler);
     }
   }
 }
