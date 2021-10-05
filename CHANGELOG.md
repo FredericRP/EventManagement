@@ -6,7 +6,12 @@ For 1.2.2 release and previous ones, this is a copy/paste from FredericRP's Stan
 
 ## Unreleased
 
+### Added
+- GenericValue to allow choosing between a value serialized in the game event or a referenced value for designers
+
 ### Changed
+- Generic inspector and events to be able to easily add new typed game events and their inspector
+- Renamed SimpleEventTrigger to CallUnityActionOnEvent for better understanding
 - FloatGameEvent has now its own Raise method with a float parameter
 - SimpleEventTrigger use the new way of calling event Raise method instead of GameEventHandler methods
 

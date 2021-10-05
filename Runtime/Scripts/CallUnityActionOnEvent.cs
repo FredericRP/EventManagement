@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SimpleEventTrigger : MonoBehaviour
+public class CallUnityActionOnEvent : MonoBehaviour
 {
   [SerializeField]
   GameEvent gameEvent = null;

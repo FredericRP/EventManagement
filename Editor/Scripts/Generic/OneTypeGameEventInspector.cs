@@ -3,20 +3,17 @@ using UnityEngine;
 
 namespace FredericRP.EventManagement
 {
-  [CustomEditor(typeof(FloatGameEvent))]
-  public class FloatGameEventInspector : Editor
+  [CustomEditor(typeof(OneTypeGameEvent<>))]
+  public class OneTypeGameEventInspector<T> : Editor
   {
     public override void OnInspectorGUI()
     {
       GUILayout.Label("GameEvent: " + serializedObject.targetObject.name);
       SerializedProperty parameter = serializedObject.FindProperty("parameter");
-      if (parameter != null)
-        parameter.floatValue = EditorGUILayout.FloatField("Float Parameter", parameter.floatValue);
-      else
-        EditorGUILayout.HelpBox("Float Game Event should have a parameter property", MessageType.Error);
+      EditorGUILayout.PropertyField(parameter);
       if (GUILayout.Button("RAISE"))
       {
-        (serializedObject.targetObject as GameEvent).Raise<float>(parameter.floatValue);
+        (serializedObject.targetObject as GameEvent).Raise();
       }
       if (serializedObject.hasModifiedProperties)
         serializedObject.ApplyModifiedProperties();
