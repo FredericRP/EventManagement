@@ -1,3 +1,5 @@
+using UnityEngine.Events;
+
 namespace FredericRP.EventManagement
 {
   public class OneTypeGameEvent<T> : GameEvent
@@ -16,6 +18,15 @@ namespace FredericRP.EventManagement
     {
       this.parameter.value = parameter;
       Raise(eventHandler);
+    }
+
+    public void Listen(UnityAction<T> action, GameEventHandler eventHandler = null)
+    {
+      base.Listen<T>(action, eventHandler);
+    }
+    public void Delete(UnityAction<T> action, GameEventHandler eventHandler = null)
+    {
+      base.Delete<T>(action, eventHandler);
     }
   }
 }

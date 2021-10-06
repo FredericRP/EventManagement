@@ -7,6 +7,7 @@ For 1.2.2 release and previous ones, this is a copy/paste from FredericRP's Stan
 ## Unreleased
 
 ### Added
+- Ability to listen and delete event listener from generic events
 - GenericValue to allow choosing between a value serialized in the game event or a referenced value for designers
 
 ### Changed
