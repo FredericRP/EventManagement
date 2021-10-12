@@ -18,3 +18,9 @@ GameEvents have evolved thanks to the Unite 2017 presentation by Schell Games (b
 - add as many unity events as you want to call functions
 
 See the **[Screen Transition](../ScreenTransitions) demo**.
+
+## Advanced
+
+If you need new typed game event, you can open the **New type game event** window under *Window / FredericRP / EventManagement / New type generation* and specify from 1 to 9 types to generate the new game event.
+
+For instance, you can indicate 3 types as string, int and MyAssembly.MyClass and it will generate the StringIngMyAssemblyMyClassGameEvent parented to ThreeTypeGameEvent and its StringIngMyAssemblyMyClassGameEventInspector

@@ -6,7 +6,10 @@ For 1.2.2 release and previous ones, this is a copy/paste from FredericRP's Stan
 
 ## Unreleased
 
+## [1.4.0] - 2021-10-12
+
 ### Added
+- EditorWindow to create new typed game events as they only rely on their generic parent class but Unity can not handle inspector window and serialization on generic only. Use carefuly as its a basic code generation.
 - Ability to listen and delete event listener from generic events
 - GenericValue to allow choosing between a value serialized in the game event or a referenced value for designers
 
