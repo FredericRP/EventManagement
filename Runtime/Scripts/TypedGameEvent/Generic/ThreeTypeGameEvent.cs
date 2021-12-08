@@ -11,7 +11,7 @@ namespace FredericRP.EventManagement
     public override void Raise(GameEventHandler eventHandler = null)
     {
       if (eventHandler == null)
-        GameEventHandler.TriggerEvent<T, U, V>(this, firstParameter.value, secondParameter.value, thirdParameter.value);
+        GameEventHandlerSingleton.TriggerEvent<T, U, V>(this, firstParameter.value, secondParameter.value, thirdParameter.value);
       else
         eventHandler.TriggerInstanceEvent<T, U, V>(this, firstParameter.value, secondParameter.value, thirdParameter.value);
     }

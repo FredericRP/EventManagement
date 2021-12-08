@@ -6,7 +6,12 @@ For 1.2.2 release and previous ones, this is a copy/paste from FredericRP's Stan
 
 ## Unreleased
 
-## [1.5.0] - 2021-10-12
+## [1.5.1] - 2021-12-08
+
+### Fixed
+- ThreeTypeGameEvent Singleton usage
+
+## [1.5.0] - 2021-12-08
 
 ### Changed
 - allow multiple event handlers: GameEventHandler is now a autonomous class, Singleton is held in GameEventHandlerSingleton behaviour
