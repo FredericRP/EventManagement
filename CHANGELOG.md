@@ -6,6 +6,11 @@ For 1.2.2 release and previous ones, this is a copy/paste from FredericRP's Stan
 
 ## Unreleased
 
+## [1.5.0] - 2021-10-12
+
+### Changed
+- allow multiple event handlers: GameEventHandler is now a autonomous class, Singleton is held in GameEventHandlerSingleton behaviour
+
 ## [1.4.0] - 2021-10-12
 
 ### Added

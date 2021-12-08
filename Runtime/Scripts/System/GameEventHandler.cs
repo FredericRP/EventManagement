@@ -1,18 +1,14 @@
-﻿using FredericRP.GenericSingleton;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace FredericRP.EventManagement
 {
-  public class GameEventHandler : Singleton<GameEventHandler>
+  public class GameEventHandler : MonoBehaviour
   {
     private Dictionary<GameEvent, Delegate> gameEvents = new Dictionary<GameEvent, Delegate>();
 
-    internal static void AddEventListener(GameEvent gameEvent, UnityAction handler)
-    {
-      Instance.AddInstanceEventListener(gameEvent, handler);
-    }
     internal void AddInstanceEventListener(GameEvent gameEvent, UnityAction handler)
     {
       if (!gameEvents.ContainsKey(gameEvent))
@@ -22,11 +18,7 @@ namespace FredericRP.EventManagement
 
       gameEvents[gameEvent] = (UnityAction)gameEvents[gameEvent] + handler;
     }
-
-    internal static void AddEventListener<T>(GameEvent gameEvent, UnityAction<T> handler)
-    {
-      Instance.AddInstanceEventListener<T>(gameEvent, handler);
-    }
+        
     internal void AddInstanceEventListener<T>(GameEvent gameEvent, UnityAction<T> handler)
     {
       if (!gameEvents.ContainsKey(gameEvent))
@@ -36,11 +28,7 @@ namespace FredericRP.EventManagement
 
       gameEvents[gameEvent] = (UnityAction<T>)gameEvents[gameEvent] + handler;
     }
-
-    internal static void AddEventListener<T, U>(GameEvent gameEvent, UnityAction<T, U> handler)
-    {
-      Instance.AddInstanceEventListener<T, U>(gameEvent, handler);
-    }
+        
     internal void AddInstanceEventListener<T, U>(GameEvent gameEvent, UnityAction<T, U> handler)
     {
       if (!gameEvents.ContainsKey(gameEvent))
@@ -50,11 +38,7 @@ namespace FredericRP.EventManagement
 
       gameEvents[gameEvent] = (UnityAction<T, U>)gameEvents[gameEvent] + handler;
     }
-
-    internal static void AddEventListener<T, U, V>(GameEvent gameEvent, UnityAction<T, U, V> handler)
-    {
-      Instance.AddInstanceEventListener<T, U, V>(gameEvent, handler);
-    }
+       
     internal void AddInstanceEventListener<T, U, V>(GameEvent gameEvent, UnityAction<T, U, V> handler)
     {
       if (!gameEvents.ContainsKey(gameEvent))
@@ -65,10 +49,6 @@ namespace FredericRP.EventManagement
       gameEvents[gameEvent] = (UnityAction<T, U, V>)gameEvents[gameEvent] + handler;
     }
 
-    internal static void RemoveEventListener(GameEvent gameEvent, UnityAction handler)
-    {
-      Instance?.RemoveInstanceEventListener(gameEvent, handler);
-    }
     internal void RemoveInstanceEventListener(GameEvent gameEvent, UnityAction handler)
     {
       Delegate eventDelegate;
@@ -79,10 +59,6 @@ namespace FredericRP.EventManagement
       }
     }
 
-    internal static void RemoveEventListener<T>(GameEvent gameEvent, UnityAction<T> handler)
-    {
-      Instance?.RemoveInstanceEventListener<T>(gameEvent, handler);
-    }
     internal void RemoveInstanceEventListener<T>(GameEvent gameEvent, UnityAction<T> handler)
     {
       Delegate eventDelegate;
@@ -93,10 +69,6 @@ namespace FredericRP.EventManagement
       }
     }
 
-    internal static void RemoveEventListener<T, U>(GameEvent gameEvent, UnityAction<T, U> handler)
-    {
-      Instance?.RemoveInstanceEventListener<T, U>(gameEvent, handler);
-    }
     internal void RemoveInstanceEventListener<T, U>(GameEvent gameEvent, UnityAction<T, U> handler)
     {
       Delegate eventDelegate;
@@ -106,10 +78,7 @@ namespace FredericRP.EventManagement
         gameEvents[gameEvent] = (UnityAction<T, U>)gameEvents[gameEvent] - handler;
       }
     }
-    internal static void RemoveEventListener<T, U, V>(GameEvent gameEvent, UnityAction<T, U, V> handler)
-    {
-      Instance?.RemoveInstanceEventListener<T, U, V>(gameEvent, handler);
-    }
+
     internal void RemoveInstanceEventListener<T, U, V>(GameEvent gameEvent, UnityAction<T, U, V> handler)
     {
       Delegate eventDelegate;
@@ -120,10 +89,6 @@ namespace FredericRP.EventManagement
       }
     }
 
-    internal static bool TriggerEvent(GameEvent gameEvent)
-    {
-      return Instance.TriggerInstanceEvent(gameEvent);
-    }
     internal bool TriggerInstanceEvent(GameEvent gameEvent)
     {
       Delegate eventDelegate;
@@ -143,10 +108,6 @@ namespace FredericRP.EventManagement
       return false;
     }
 
-    internal static bool TriggerEvent<T>(GameEvent gameEvent, T value)
-    {
-      return Instance.TriggerInstanceEvent<T>(gameEvent, value);
-    }
     internal bool TriggerInstanceEvent<T>(GameEvent gameEvent, T value)
     {
       Delegate eventDelegate;
@@ -169,10 +130,6 @@ namespace FredericRP.EventManagement
       return false;
     }
 
-    internal static bool TriggerEvent<T, U>(GameEvent gameEvent, T value, U secondValue)
-    {
-      return Instance.TriggerInstanceEvent<T, U>(gameEvent, value, secondValue);
-    }
     internal bool TriggerInstanceEvent<T, U>(GameEvent gameEvent, T value, U secondValue)
     {
       Delegate eventDelegate;
@@ -195,10 +152,6 @@ namespace FredericRP.EventManagement
       return false;
     }
 
-    internal static bool TriggerEvent<T, U, V>(GameEvent gameEvent, T value, U secondValue, V thirdValue)
-    {
-      return Instance.TriggerInstanceEvent<T, U, V>(gameEvent, value, secondValue, thirdValue);
-    }
     internal bool TriggerInstanceEvent<T, U, V>(GameEvent gameEvent, T value, U secondValue, V thirdValue)
     {
       Delegate eventDelegate;
