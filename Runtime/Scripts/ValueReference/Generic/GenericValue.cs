@@ -23,7 +23,12 @@ namespace FredericRP.EventManagement
       set
       {
         if (valueType == ValueType.reference)
-          typedReference.value = value;
+        {
+          if (typedReference != null)
+            typedReference.value = value;
+          else
+            Debug.LogError("Setting a value for the reference is not allowed when the reference is not set.");
+        }
         else
           typedValue = value;
       }

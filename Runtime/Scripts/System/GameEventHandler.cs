@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace FredericRP.EventManagement
 {
-  public class GameEventHandler : MonoBehaviour
+  public class GameEventHandler
   {
     private Dictionary<GameEvent, Delegate> gameEvents = new Dictionary<GameEvent, Delegate>();
 

@@ -6,6 +6,15 @@ For 1.2.2 release and previous ones, this is a copy/paste from FredericRP's Stan
 
 ## Unreleased
 
+
+## [1.5.2] - 2021-12-23
+
+### Fixed
+- GameEventHandler was meant to be a simple class, not a MonoBehavior, this is now fixed
+
+### Changed
+- Protection against setting a value with a null GenericReference
+
 ## [1.5.1] - 2021-12-08
 
 ### Fixed
