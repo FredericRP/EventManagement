@@ -6,6 +6,11 @@ For 1.2.2 release and previous ones, this is a copy/paste from FredericRP's Stan
 
 ## Unreleased
 
+## [1.5.3] - 2022-04-06
+
+### Fixed
+- Override references in asmdef to lower reload times
+- Auto dependencies in package
 
 ## [1.5.2] - 2021-12-23
 
