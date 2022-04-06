@@ -1,19 +1,18 @@
 {
-  "name": "com.fredericrp.eventhandler",
-  "version": "1.5.2",
-  "displayName": "FRP Event Handler",
-  "description": "A generic event handler that allows you to subscribe and trigger game events in your game in a minute. GameEvents have evolved thanks to the Unite 2017 presentation by Schell Games (but we still prefer our way to handle listener with delegates).",
-  "unity": "2020.1",
-  "unityRelease": "0f1",
-  "dependencies": {
-    "com.fredericrp.singleton": "1.3.0"
-  },
-  "keywords": [
-    "standard assets"
-  ],
-  "author": {
-    "name": "FredericRP",
-    "email": "unity@FredericRP.com",
-    "url": "https://FredericRP.com"
-  }
+    "name": "com.fredericrp.eventhandler",
+    "version": "1.5.2",
+    "displayName": "FRP Event Handler",
+    "description": "A generic event handler that allows you to subscribe and trigger game events in your game in a minute. GameEvents have evolved thanks to the Unite 2017 presentation by Schell Games (but we still prefer our way to handle listener with delegates).",
+    "unity": "2020.1",
+    "keywords": [
+        "standard assets"
+    ],
+    "dependencies": {
+        "com.fredericrp.singleton": "1.3.1"
+    },
+    "author": {
+        "name": "FredericRP",
+        "email": "unity@FredericRP.com",
+        "url": "https://FredericRP.com"
+    }
 }
