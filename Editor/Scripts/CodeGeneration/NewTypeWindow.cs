@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
@@ -189,23 +190,54 @@ public class NewTypeWindow : EditorWindow
     { "void", typeof(void) }
 };
 
-  static Type GetTypeFromAliasOrName(string aliasOrName)
+  static Type GetTypeFromAliasOrName(string typeName)
   {
-    // Handle nullable value types
-    //var nullbase = Nullable.GetUnderlyingType(type);
-    //if (nullbase != null)
-    //return TypeNameOrAlias(nullbase) + "?";
-
-    // Handle arrays
-    //if (type.BaseType == typeof(System.Array))
-    //return TypeNameOrAlias(type.GetElementType()) + "[]";
-
+    Type type;
     // Lookup alias for type
-    if (_typeAlias.TryGetValue(aliasOrName, out Type type))
+    if (_typeAlias.TryGetValue(typeName, out type))
       return type;
 
-    // Default to CLR type name
-    return Type.GetType(aliasOrName);
+    // Try global load
+    type = Type.GetType(typeName);
+    if (type == null)
+    {
+      // If not found, try default assembly one
+      type = TryLoadType("Assembly-CSharp", typeName);
+      if (type == null)
+      {
+        // If not found, try to find automatically the assembly from package name
+        int length = typeName.LastIndexOf('.');
+        if (length > 0)
+        {
+          string assemblyName = typeName.Substring(0, length);
+          // Use qualified name to retrieve assembly name and load it
+          type = TryLoadType(assemblyName, typeName);
+          // but with unity packages, it can fail to load it, try "sub" assemblies instead: Runtime and Editor
+          if (type == null)
+            type = TryLoadType(assemblyName + ".Runtime", typeName);
+          if (type == null)
+            type = TryLoadType(assemblyName + ".Editor", typeName);
+        }
+      }
+    }
+    return type;
+  }
+
+  /// <summary>
+  /// Try to load a type from assembly and a type names
+  /// </summary>
+  /// <param name="assemblyName"></param>
+  /// <param name="typeName"></param>
+  /// <returns>the type if found, null otherwise</returns>
+  protected static Type TryLoadType(string assemblyName, string typeName)
+  {
+    try
+    {
+      Assembly requiredAssembly = Assembly.Load(assemblyName);
+      return requiredAssembly?.GetType(typeName);
+    }
+    catch (Exception) { }
+    return null;
   }
   #endregion
 }
