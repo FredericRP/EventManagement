@@ -6,6 +6,14 @@ For 1.2.2 release and previous ones, this is a copy/paste from FredericRP's Stan
 
 ## Unreleased
 
+## [1.5.4] - 2023-12-04
+
+### Added
+- Generic conversion operator to facilitate usage of a generic value (IntValue --> can be used as an int directly)
+
+### Fixed
+- All assemblies and usual types should work now
+
 ## [1.5.3] - 2022-04-06
 
 ### Fixed

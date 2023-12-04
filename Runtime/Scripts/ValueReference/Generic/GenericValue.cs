@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace FredericRP.EventManagement
@@ -33,5 +31,9 @@ namespace FredericRP.EventManagement
           typedValue = value;
       }
     }
+    /// <summary>
+    /// Conversion operator to facilitate usage of this generic value
+    /// </summary>
+    public static implicit operator T(GenericValue<T> genValue) => genValue.value;
   }
 }

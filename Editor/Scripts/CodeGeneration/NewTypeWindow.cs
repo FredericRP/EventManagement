@@ -82,7 +82,7 @@ public class NewTypeWindow : EditorWindow
     // Trim types after type count
     typeList.RemoveRange(typeCount, typeList.Count - typeCount);
     List<string> cleanedTypeList = new List<string>();
-    cleanedTypeList.AddRange(typeList);
+    //cleanedTypeList.AddRange(typeList);
     List<string> uppercaseTypeList = new List<string>();
     string constructedType = "";
     uppercaseTypeList.Clear();
@@ -90,9 +90,12 @@ public class NewTypeWindow : EditorWindow
     for (int i = 0; i < typeCount; i++)
     {
       uppercaseTypeList.Add("");
-      cleanedTypeList[i] = cleanedTypeList[i].Replace("<", "").Replace(">", "").Replace("[", "").Replace("]", "");
+      // Remove extra characters if using generic, arrays or assemblies
+      cleanedTypeList.Add(typeList[i].Replace("<", "").Replace(">", "").Replace("[", "").Replace("]", ""));
+      if (cleanedTypeList[i].LastIndexOf(".") > 0)
+        cleanedTypeList[i] = cleanedTypeList[i].Substring(cleanedTypeList[i].LastIndexOf(".") + 1);
+      // Start with an uppercase
       uppercaseTypeList[i] = cleanedTypeList[i][0].ToString().ToUpper() + cleanedTypeList[i].Substring(1);
-      // Add uppercase type to the full name, without list or array characters
       constructedType += uppercaseTypeList[i];
     }
     constructedType += "GameEvent";
@@ -190,33 +193,33 @@ public class NewTypeWindow : EditorWindow
     { "void", typeof(void) }
 };
 
-  static Type GetTypeFromAliasOrName(string typeName)
+  static Type GetTypeFromAliasOrName(string aliasOrName)
   {
-    Type type;
+    Type type = null;
     // Lookup alias for type
-    if (_typeAlias.TryGetValue(typeName, out type))
+    if (_typeAlias.TryGetValue(aliasOrName, out type))
       return type;
 
-    // Try global load
-    type = Type.GetType(typeName);
+    // Default to CLR type name
+    type = Type.GetType(aliasOrName);
     if (type == null)
     {
       // If not found, try default assembly one
-      type = TryLoadType("Assembly-CSharp", typeName);
+      type = TryLoadType("Assembly-CSharp", aliasOrName);
       if (type == null)
       {
         // If not found, try to find automatically the assembly from package name
-        int length = typeName.LastIndexOf('.');
+        int length = aliasOrName.LastIndexOf('.');
         if (length > 0)
         {
-          string assemblyName = typeName.Substring(0, length);
+          string assemblyName = aliasOrName.Substring(0, length);
           // Use qualified name to retrieve assembly name and load it
-          type = TryLoadType(assemblyName, typeName);
+          type = TryLoadType(assemblyName, aliasOrName);
           // but with unity packages, it can fail to load it, try "sub" assemblies instead: Runtime and Editor
           if (type == null)
-            type = TryLoadType(assemblyName + ".Runtime", typeName);
+            type = TryLoadType(assemblyName + ".Runtime", aliasOrName);
           if (type == null)
-            type = TryLoadType(assemblyName + ".Editor", typeName);
+            type = TryLoadType(assemblyName + ".Editor", aliasOrName);
         }
       }
     }
@@ -229,15 +232,14 @@ public class NewTypeWindow : EditorWindow
   /// <param name="assemblyName"></param>
   /// <param name="typeName"></param>
   /// <returns>the type if found, null otherwise</returns>
-  protected static Type TryLoadType(string assemblyName, string typeName)
+  protected static Type TryLoadType(string assemblyName, string aliasOrName)
   {
     try
     {
       Assembly requiredAssembly = Assembly.Load(assemblyName);
-      return requiredAssembly?.GetType(typeName);
+      return requiredAssembly?.GetType(aliasOrName);
     }
-    catch (Exception) { }
-    return null;
+    catch (Exception) { return null; }
   }
   #endregion
 }

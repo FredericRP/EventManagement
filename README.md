@@ -1,9 +1,6 @@
-[![openupm](https://img.shields.io/npm/v/com.fredericrp.eventhandler?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.fredericrp.eventhandler/)
-
 # Event Management
 
 A generic event handler that allows you to subscribe and trigger game events in your game in a minute.
-Both simple and typed events are managed, both can be used from the inspector directly.
 
 GameEvents have evolved thanks to the Unite 2017 presentation by Schell Games (but we still prefer our way to handle listener with delegates).
 
